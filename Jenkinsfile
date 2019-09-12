@@ -3,7 +3,7 @@ node {
   git url: 'https://github.com/kalyandas/ms-node-poc.git'
 
   stage 'build'
-  docker.build('nginx')
+  sh './build.sh'
 
   stage 'deploy'
   sh './deploy.sh'
