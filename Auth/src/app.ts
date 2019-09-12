@@ -101,13 +101,13 @@ function main(): void {
 
             // creating a new token using HS256 (symmetric signature) with a hard coded key
             // in reality you should use RS256 and some certificate...
-            let token = jwt.sign({ id: userinfo.sub, name: userinfo.name }, mysecret);
+            let token = jwt.sign({ id: (userinfo as any).sub, name: (userinfo as any).name }, mysecret);
 
             // setting the token as a cookie in the browser that is HttpOnly = JS code can't touch it.
             res.cookie("auth_token", token, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true });
             res.cookie("access_token", token, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true });
             // providing the UI with a name to greet, and sending the browser to the home:
-            let query = querystring.stringify({ id: userinfo.id, name: userinfo.name });
+            let query = querystring.stringify({ id: (userinfo as any).id, name: (userinfo as any).name });
             res.redirect("http://localhost:3080/#/home?" + query);
         });
 
