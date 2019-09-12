@@ -3,8 +3,8 @@ node {
   git url: 'https://github.com/kalyandas/ms-node-poc.git'
 
   stage 'build'
-  sh './build.sh'
+  sh 'bash ./build.sh'
 
   stage 'deploy'
-  sh './deploy.sh'
+  sh 'bash ./deploy.sh'
 }
